@@ -41,6 +41,7 @@ iron:router@1.0.13
 iron:url@1.0.11
 jquery@1.11.9
 launch-screen@1.0.12
+less@2.6.3_1
 livedata@1.0.18
 logging@1.0.13_1
 meteor@1.1.15_1
@@ -64,6 +65,7 @@ reactive-var@1.0.10
 reload@1.1.10
 retry@1.0.8
 routepolicy@1.0.11
+semantic:ui-css@2.1.2
 spacebars@1.0.12
 spacebars-compiler@1.0.12
 standard-minifier-css@1.0.7_1
