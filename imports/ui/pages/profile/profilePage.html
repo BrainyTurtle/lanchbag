@@ -1,3 +1,30 @@
 <template name="profilePage">
-  <h2>{{profileUser.profile.username}}'s Profile</h2>
+  <div class="profile-page">
+    <div class="aside">
+      {{#with profileUser}}
+        <div class="user-picture"></div>
+        <div class="user-info">
+          <h3>{{profile.firstName}} {{profile.lastName}}</h3>
+        </div>
+        <div class="profile-actions">
+          <a class="user-posts" href="">30 Posts</a>
+          <a class="user-followers" href="">28 Followers</a>
+          <a class="ui inverted green button"><i class="plus icon"></i> FOLLOW</a>
+        </div>
+      {{/with}}
+    </div>
+    <div class="wall">
+      <h2>{{profileUser.profile.username}}'s Profile</h2>
+      <div class="posts">
+        {{#each posts}}
+          <div class="post">
+            <h5 class="post-owner">{{username}}</h5>
+            <h3 class="post-title">{{title}}</h3>
+            <div class="post-content">{{content}}</div>
+            <h5 class="time-posted">{{timeFromNow createdAt}}</h5>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
 </template>
