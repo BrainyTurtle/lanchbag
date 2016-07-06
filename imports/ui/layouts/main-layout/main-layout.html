@@ -1,8 +1,9 @@
 <template name="mainLayout">
   <div class="main-layout">
-    {{> navbar}}
+    {{> yield "header"}}
     <div class="ui container">
-      <h1>Home</h1>
+      {{> yield "body"}}
     </div>
+    {{> yield "footer"}}
   </div>
 </template>
