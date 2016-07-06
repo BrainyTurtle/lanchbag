@@ -42,23 +42,19 @@ Router.route('/home', {
   },
 });
 
-Router.route('/user/:profileUserId', {
+Router.route('/user/:profileUserId', function() {
+  this.wait(Meteor.subscribe('users.one', this.params.profileUserId));
+
+  if (this.ready()) {
+    this.render('navbar', {to: 'header'});
+    this.render('profilePage', {to: 'body'});
+    this.next();
+  } else {
+    this.render('navbar', {to: 'header'});
+    this.render('loading', {to: 'body'});
+  }
+}, {
   name: 'profilePage',
-  yieldRegions: {
-    'navbar': {to: 'header'},
-    'profilePage': {to: 'body'},
-  },
-  onBeforeAction: function() {
-    var currentUser = Meteor.userId();
-    if (currentUser) {
-      this.next();
-    } else {
-      Router.go('homePage');
-    }
-  },
-  waitOn: function() {
-    return Meteor.subscribe('users.one', this.params.profileUserId);
-  },
   data: function() {
     var profileUser = Meteor.users.findOne({
       $or: [
@@ -66,13 +62,12 @@ Router.route('/user/:profileUserId', {
         {"profile.username": this.params.profileUserId},
       ],
     });
-
     if (profileUser) {
-      var isProfileOwner = !!(Meteor.userId() === profileUser._id);
+      var isProfileOwner = Meteor.userId() === profileUser._id;
       return {
         profileUser: profileUser,
         isProfileOwner: isProfileOwner,
-      };
+      }
     }
   },
 });
