@@ -1,9 +1,47 @@
 <template name="navbar">
-  <div class="ui secondary menu navbar">
-    <div class="item brand"><h2>Lunchbag</h2></div>
-    <div class="right menu">
-      <a class="item">Sign In</a>
-      <a class="item">About Us</a>
+  <div class="ui menu navbar">
+    <div class="ui container">
+      <a class="header item" href="{{#if currentUser}}{{pathFor route='homePage'}}{{else}}/{{/if}}">Lunchbag</a>
+      <div class="right menu navbar-links">
+        {{#with currentUser}}
+          {{> userNavbarDropdown user=this}}
+        {{else}}
+          <a class="item signin">Sign In</a>
+          <a class="item">About Us</a>
+        {{/with}}
+      </div>
+    </div>
+  </div>
+  <div class="ui small modal signin-modal">
+    <div class="header">Sign in</div>
+    <div class="content">
+      {{> signin}}
+    </div>
+  </div>
+</template>
+
+<template name="signin">
+  <form class="ui form signin-form">
+    <div class="field">
+      <input type="text" name="email" placeholder="Email">
+    </div>
+    <div class="field">
+      <input type="password" name="password" placeholder="Password">
+    </div>
+    <span class="signup-link">
+      Don't have an account?
+      <a href="{{pathFor 'landingPage'}}">Sign up</a>.
+    </span>
+    <button class="ui primary button right floated" type="submit">Sign in</button>
+  </form>
+</template>
+
+<template name="userNavbarDropdown">
+  <div class="ui pointing dropdown link item user-navbar-dropdown">
+    <span>{{user.profile.username}}</span>
+    <i class="dropdown icon"></i>
+    <div class="menu">
+      <a class="item logout">Logout</a>
     </div>
   </div>
 </template>

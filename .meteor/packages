@@ -22,3 +22,5 @@ insecure                # Allow all DB writes from clients (for prototyping)
 semantic:ui-css
 iron:router
 less
+accounts-password
+aldeed:collection2
