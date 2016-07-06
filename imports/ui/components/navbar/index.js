@@ -13,6 +13,10 @@ Template.navbar.events({
     event.preventDefault();
     $('.signin-modal').modal('show');
   },
+  'click a.my-profile-link'(event, template) {
+    event.preventDefault();
+    Router.go('profilePage', {profileUserId: Meteor.userId()});
+  },
 });
 
 /* ========= Signin modal body template ========= */
