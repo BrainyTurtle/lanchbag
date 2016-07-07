@@ -10,7 +10,27 @@ Template.homePage.helpers({
   postOwner(userId) {
     return Meteor.users.findOne(userId).profile.username;
   },
+  numLikes() {
+    return this.likes.length;
+  },
+  numComments() {
+    return this.comments.length;
+  },
   timeFromNow(date) {
     return moment(date).fromNow();
+  },
+});
+
+Template.homePage.events({
+  'click a.action-like'(event, template) {
+    event.preventDefault();
+
+    if (this._id) {
+      Meteor.call('Posts.toggleLike', this._id, (error) => {
+        if (error) {
+          alert(error.reason);
+        }
+      });
+    }
   },
 });

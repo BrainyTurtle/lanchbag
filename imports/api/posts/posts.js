@@ -56,3 +56,16 @@ Posts.schema = new SimpleSchema({
 });
 
 Posts.attachSchema(Posts.schema);
+
+Posts.helpers({
+  hasCurrentUserLiked() {
+    if (this.likes) {
+      return this.likes.indexOf(Meteor.userId()) !== -1;
+    }
+  },
+  hasCurrentUserCommented() {
+    if (this.comments) {
+      return this.comments.indexOf(Meteor.userId()) !== -1;
+    }
+  },
+});
