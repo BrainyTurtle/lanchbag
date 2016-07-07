@@ -40,10 +40,15 @@ Router.route('/home', {
       Router.go('landingPage');
     }
   },
+  waitOn: function() {
+    Meteor.subscribe('posts.all');
+    Meteor.subscribe('users.all');
+  },
 });
 
 Router.route('/user/:profileUserId', function() {
   this.wait(Meteor.subscribe('users.one', this.params.profileUserId));
+  this.wait(Meteor.subscribe('posts.fromUser', this.params.profileUserId));
 
   if (this.ready()) {
     this.render('navbar', {to: 'header'});

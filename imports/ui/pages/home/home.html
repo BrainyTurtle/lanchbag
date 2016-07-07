@@ -1,5 +1,16 @@
 <template name="homePage">
-  {{#with currentUser}}
-    <h2>Welcome {{profile.firstName}}</h2>
-  {{/with}}
+  <div class="home-page">
+    {{#with currentUser}}
+      <h2>Welcome {{profile.firstName}}</h2>
+    {{/with}}
+    <div class="post-form-wrapper">
+      {{> postForm}}
+    </div>
+    <div class="posts-wrapper post-grid">
+      <div class="post-grid-gutter-sizer"></div>
+      {{#each posts}}
+        {{> post}}
+      {{/each}}
+    </div>
+  </div>
 </template>

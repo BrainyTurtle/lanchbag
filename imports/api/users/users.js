@@ -20,6 +20,11 @@ Schema.UserProfile = new SimpleSchema({
     unique: true,
     min: 3,
     max: 15,
+    autoValue: function () {
+      if (this.isSet && typeof this.value === 'string') {
+        return this.value.toLowerCase();
+      }
+    },
   },
 });
 
