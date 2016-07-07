@@ -3,18 +3,10 @@ import './post.html';
 import './post.less';
 
 Template.post.onRendered(function() {
-  $('.post-grid').masonry({
-    itemSelector: '.post',
-    // columnWidth: '.column-width-selector',
-    gutter: '.post-grid-gutter-sizer',
-    fitWidth: true,
-  });
+  $('.post-grid').isotope('reloadItems').isotope();
 });
 
 Template.post.helpers({
-  posts() {
-    return Posts.find({}, {sort: {createdAt: -1}}).fetch();
-  },
   postOwner() {
     return Meteor.users.findOne(this.userId).profile.username;
   },
