@@ -1,0 +1,139 @@
+.post {
+  border:1px solid rgba(34, 36, 38, 0.15);
+  border-radius:5px;
+  margin-bottom:2%;
+  width:32%;
+  background-color:white;
+  .post-header {
+    position:relative;
+    padding:10px;
+    border-bottom:1px solid rgba(34, 36, 38, 0.15);
+    .user-picture {
+      position:absolute;
+      z-index:2;
+      width:80px;
+      height:80px;
+      background-color:white;
+      background-image:url(http://semantic-ui.com/images/avatar2/large/matthew.png);
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      border:1px solid rgba(34, 36, 38, 0.15);
+      border-radius:5px;
+    }
+    .offset {
+      width:80px;
+      height:30px;
+      display:inline-block;
+      margin-right:10px;
+    }
+    .post-actions {
+      float:right;
+      margin-top:10px;
+    }
+    .header-info {
+      vertical-align:top;
+      width:auto;
+      display:inline-block;
+      span {
+        display:block;
+      }
+      .post-owner {
+        font-size:14pt;
+      }
+      .post-time-created {
+        font-size:10pt;
+        color:#7E7E7E;
+      }
+    }
+  }
+  .post-image {
+    width:100%;
+    padding-bottom:70%;
+    overflow:hidden;
+    position:relative;
+    cursor:pointer;
+    .image-wrapper {
+      width:100%;
+      height:100%;
+      background-color:white;
+      background-image:url(https://www.restaurantmealprices.com/wp-content/uploads/2014/08/Burger-Experience-RestaurantMealPrices.jpg);
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      position:absolute;
+      transition:all .2s ease-out;
+      @media screen and (min-width:551px) {
+        &:hover {
+          transform:scale(1.05);
+        }
+      }
+    }
+  }
+  .post-content {
+    padding:20px 15px;
+    -webkit-box-shadow: 0 9px 0 -8px rgba(34, 36, 38, 0.15);
+            box-shadow: 0 9px 0 -8px rgba(34, 36, 38, 0.15);
+    .post-title {
+      font-size:14pt;
+    }
+  }
+  .post-footer {
+    padding:10px;
+    padding-top:15px;
+    overflow:auto;
+    .icon {
+      font-size:1.7em;
+    }
+    .action-like {
+      float:left;
+      color:#868686;
+      transition:color .2s ease-out;
+      &:hover {
+        @media screen and (min-width:551px) {
+          color:#EBC214;
+        }
+      }
+    }
+    .post-likes {
+      float:left;
+    }
+    .post-comments {
+      float:right;
+    }
+    .action-comment {
+      float:right;
+      margin-left:0.5rem;
+      color:#868686;
+      transition:color .2s ease-out;
+      &:hover {
+        @media screen and (min-width:551px) {
+          color:#1497EB;
+        }
+      }
+    }
+    .has-liked {
+      color:#EBC214;
+    }
+    .has-commented {
+      color:#1497EB;
+    }
+  }
+
+  @media screen and (max-width:1199px) {
+    width:48%;
+  }
+  @media screen and (max-width:550px) {
+    width:100%;
+    border-radius:0;
+    border:none;
+    margin-bottom:8%;
+  }
+}
+
+@media screen and (max-width:550px) {
+  .ui.container {
+    width:100% !important;
+    margin:0 !important;
+  }
+}

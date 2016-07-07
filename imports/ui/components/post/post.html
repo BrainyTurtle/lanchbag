@@ -1,0 +1,29 @@
+<template name="post">
+  <div class="post">
+    <div class="post-header">
+      <div class="user-picture"></div>
+      <div class="offset"></div>
+      <div class="header-info">
+        <a class="post-owner" href="{{pathFor route='profilePage' data=profilePathData}}">{{postOwner}}</a>
+        <span class="post-time-created">{{timeFromNow createdAt}}</span>
+      </div>
+      <a class="post-actions" href=""><i class="icon chevron down"></i></a>
+    </div>
+    <div class="post-image">
+      <div class="image-wrapper"></div>
+    </div>
+    <div class="post-content">
+      <span class="post-title">{{title}}</span>
+    </div>
+    <div class="post-footer">
+      <a class="action-like {{hasLiked}}" href="">
+        <i class="icon smile"></i>
+      </a>
+      <a class="post-likes" href="">{{numLikes}}</a>
+      <a href="" class="action-comment {{hasCommented}}">
+        <i class="icon comments outline"></i>
+      </a>
+      <a class="post-comments" href="">{{numComments}}</a>
+    </div>
+  </div>
+</template>
