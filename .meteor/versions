@@ -83,6 +83,7 @@ routepolicy@1.0.11
 semantic:ui-css@2.1.2
 service-configuration@1.0.10
 sha@1.0.8
+sjors:meteor-masonry@0.0.1
 spacebars@1.0.12
 spacebars-compiler@1.0.12
 srp@1.0.9

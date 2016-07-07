@@ -6,7 +6,9 @@
     <div class="post-form-wrapper">
       {{> postForm}}
     </div>
-    <div class="posts-wrapper">
+    <div class="posts-wrapper post-grid">
+      <div class="column-width-selector"></div>
+      <div class="post-grid-gutter-sizer"></div>
       {{#each posts}}
         {{> post}}
       {{/each}}

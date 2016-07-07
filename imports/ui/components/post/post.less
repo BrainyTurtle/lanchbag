@@ -1,7 +1,9 @@
 .post {
   border:1px solid rgba(34, 36, 38, 0.15);
   border-radius:5px;
-  margin-bottom:30px;
+  margin-bottom:2%;
+  width:32%;
+  background-color:white;
   .post-header {
     position:relative;
     padding:10px;
@@ -104,5 +106,22 @@
         color:#1497EB;
       }
     }
+  }
+
+  @media screen and (max-width:1199px) {
+    width:48%;
+  }
+  @media screen and (max-width:550px) {
+    width:100%;
+    border-radius:0;
+    border-left:none;
+    border-right:none;
+  }
+}
+
+@media screen and (max-width:550px) {
+  .ui.container {
+    width:100% !important;
+    margin:0 !important;
   }
 }
