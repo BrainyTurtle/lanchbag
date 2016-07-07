@@ -6,21 +6,10 @@
     <div class="post-form-wrapper">
       {{> postForm}}
     </div>
-    <div class="ui two column grid posts-wrapper">
-      <div class="row">
-        {{#each posts}}
-          <div class="column">
-            <div class="post">
-              <h5 class="post-owner">{{postOwner userId}}</h5>
-              <h3 class="post-title">{{title}}</h3>
-              <div class="post-content">{{content}}</div>
-              <a class="action-like" href="">{{numLikes}} Like</a> <br>
-              <a class="action-comment" href="">{{numComments}} Comment</a>
-              <h5 class="time-posted">{{timeFromNow createdAt}}</h5>
-            </div>
-          </div>
-        {{/each}}
-      </div>
+    <div class="posts-wrapper">
+      {{#each posts}}
+        {{> post}}
+      {{/each}}
     </div>
   </div>
 </template>

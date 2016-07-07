@@ -4,9 +4,12 @@ import './profilePage.html';
 import './profilePage.less';
 
 Template.profilePage.onCreated(function() {
-  if (!this.data) {
-    Router.go('homePage');
-  }
+  var self = this;
+  this.autorun(function() {
+    if (!self.data) {
+      Router.go('homePage');
+    }
+  });
 });
 
 Template.profilePage.helpers({
