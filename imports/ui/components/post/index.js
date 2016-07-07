@@ -24,6 +24,12 @@ Template.post.helpers({
   numComments() {
     return this.comments.length;
   },
+  hasLiked() {
+    return this.hasCurrentUserLiked() ? 'has-liked' : '';
+  },
+  hasCommented() {
+    return this.hasCurrentUserCommented() ? 'has-commented' : '';
+  },
   timeFromNow(date) {
     return moment(date).fromNow();
   },

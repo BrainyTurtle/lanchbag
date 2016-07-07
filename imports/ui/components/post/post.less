@@ -63,8 +63,10 @@
       background-repeat:no-repeat;
       position:absolute;
       transition:all .2s ease-out;
-      &:hover {
-        transform:scale(1.05);
+      @media screen and (min-width:551px) {
+        &:hover {
+          transform:scale(1.05);
+        }
       }
     }
   }
@@ -88,7 +90,9 @@
       color:#868686;
       transition:color .2s ease-out;
       &:hover {
-        color:#EBC214;
+        @media screen and (min-width:551px) {
+          color:#EBC214;
+        }
       }
     }
     .post-likes {
@@ -103,8 +107,16 @@
       color:#868686;
       transition:color .2s ease-out;
       &:hover {
-        color:#1497EB;
+        @media screen and (min-width:551px) {
+          color:#1497EB;
+        }
       }
+    }
+    .has-liked {
+      color:#EBC214;
+    }
+    .has-commented {
+      color:#1497EB;
     }
   }
 
