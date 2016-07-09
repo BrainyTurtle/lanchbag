@@ -8,7 +8,7 @@ import './profilePage.less';
 Template.profilePage.onCreated(function() {
   var self = this;
   var imageId = Profiles.findOne().profilePicture;
-  this.autorun(function() {
+  Tracker.autorun(function() {
     if (!self.data) {
       Router.go('homePage');
     }
@@ -67,9 +67,9 @@ Template.profilePage.helpers({
     return Profiles.findOne().hasFollower(Meteor.userId());
   },
   profileImage() {
-    let imageId = Profiles.findOne().profilePicture;
+    let imageId = Profiles.findOne({userId: this._id}).profilePicture;
     return ProfileImages.findOne(imageId);
-  }
+  },
 });
 
 Template.profilePage.events({

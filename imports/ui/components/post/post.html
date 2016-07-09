@@ -1,7 +1,7 @@
 <template name="post">
   <div class="post">
     <div class="post-header">
-      <div class="user-picture"></div>
+      <div class="user-picture" style="background-image: {{#with ownerImage}} url({{url}}) {{/with}}"></div>
       <div class="offset"></div>
       <div class="header-info">
         <a class="post-owner" href="{{pathFor route='profilePage' data=profilePathData}}">{{postOwner}}</a>

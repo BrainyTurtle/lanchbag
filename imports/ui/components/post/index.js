@@ -1,5 +1,7 @@
 import { Posts } from '/imports/api/posts/posts.js';
 import { PostImages } from '/imports/api/images/images.js';
+import { ProfileImages } from '/imports/api/images/images.js';
+import { Profiles } from '/imports/api/profiles/profiles.js';
 import './post.html';
 import './post.less';
 
@@ -9,6 +11,9 @@ Template.post.onCreated(function() {
   Tracker.autorun(function() {
     if (imageId) {
       Meteor.subscribe('images.one', imageId);
+      Meteor.subscribe('profiles.fromUser', self.data.userId);
+      //TODO (mronfim): only subscribe to images that are needed (here and on profile page).
+      Meteor.subscribe('profileImages.all');
     }
   });
 });
@@ -20,6 +25,10 @@ Template.post.onRendered(function() {
 Template.post.helpers({
   postOwner() {
     return Meteor.users.findOne(this.userId).profile.username;
+  },
+  ownerImage() {
+    let imageId = Profiles.findOne({userId: this.userId}).profilePicture;
+    return ProfileImages.findOne(imageId);
   },
   numLikes() {
     return this.likes.length;
@@ -40,7 +49,6 @@ Template.post.helpers({
     return { profileUserId: this.userId };
   },
   image() {
-    // console.log(PostImages.findOne(this.imageIds[0]);
     return PostImages.findOne(this.imageIds[0]);
   },
 });
