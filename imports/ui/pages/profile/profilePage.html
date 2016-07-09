@@ -2,7 +2,7 @@
   <div class="profile-page">
     <div class="aside">
       {{#with profileUser}}
-        <div class="user-picture">
+        <div class="user-picture" style="background-image: {{#with profileImage}} url({{url}}); {{/with}}">
           {{#if isCurrentUser}}
             <div class="user-picture-overlay"><i class="icon photo"></i></div>
           {{/if}}
@@ -14,7 +14,11 @@
           <a class="user-posts" href="">{{numPosts}} Posts</a>
           <a class="user-followers" href="">{{numFollowers}} Followers</a>
           {{#unless isCurrentUser}}
-            <a class="ui inverted green button user-follow-button"><i class="plus icon"></i> FOLLOW</a>
+            {{#if isFollowing}}
+              <a class="ui inverted red button user-follow-button">UNFOLLOW</a>
+            {{else}}
+              <a class="ui inverted green button user-follow-button">FOLLOW</a>
+            {{/if}}
           {{else}}
             <a class="ui inverted blue button user-followers-button">FOLLOWERS</a>
           {{/unless}}
@@ -44,8 +48,16 @@
 </template>
 
 <template name="userProfilePictureUpload">
-  <div class="user-profile-pic-upload-zone" id="dropzone">
-    <span class="upload-icon"><i class="icon plus"></i></span>
+  <form class="ui form profile-picture-form">
+    <div class="user-profile-pic-upload-zone" id="dropzone">
+      <div class="image-preview" style="background-image: {{#with previewImage}} url({{url}}); {{/with}}"></div>
+      <span class="upload-icon"><i class="icon plus"></i></span>
+    </div>
     <input type="file" name="file" accept="image/*" class="input-file-upload">
-  </div>
+    <div class="ui buttons save-or-cancel">
+      <button class="ui button cancel-btn">Cancel</button>
+      <div class="or"></div>
+      <button class="ui positive button save-btn" type="submit">Save</button>
+    </div>
+  </form>
 </template>

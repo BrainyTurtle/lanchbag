@@ -1,12 +1,29 @@
 
 if (Meteor.isServer) {
-  var imageStore = new FS.Store.S3('postImages', {
+  var postImageStore = new FS.Store.S3('postImages', {
     accessKeyId: Meteor.settings.AWSAccessKeyId,
     secretAccessKey: Meteor.settings.AWSSecretAccessKey,
     bucket: Meteor.settings.AWSBucket
   });
   export const PostImages = new FS.Collection('postImages', {
-    stores: [imageStore],
+    stores: [postImageStore],
+    filter: {
+      allow: {
+        contentTypes: ['image/*']
+      },
+      onInvalid: function(message) {
+        console.log(message);
+      },
+    }
+  });
+
+  var profileImageStore = new FS.Store.S3('profileImages', {
+    accessKeyId: Meteor.settings.AWSAccessKeyId,
+    secretAccessKey: Meteor.settings.AWSSecretAccessKey,
+    bucket: Meteor.settings.AWSBucket
+  });
+  export const ProfileImages = new FS.Collection('profileImages', {
+    stores: [profileImageStore],
     filter: {
       allow: {
         contentTypes: ['image/*']
@@ -19,9 +36,22 @@ if (Meteor.isServer) {
 }
 
 if (Meteor.isClient) {
-  var imageStore = new FS.Store.S3('postImages');
+  var postImageStore = new FS.Store.S3('postImages');
   export const PostImages = new FS.Collection('postImages', {
-    stores: [imageStore],
+    stores: [postImageStore],
+    filter: {
+      allow: {
+        contentTypes: ['image/*']
+      },
+      onInvalid: function(message) {
+        toastr.error(message);
+      },
+    }
+  });
+
+  var profileImageStore = new FS.Store.S3('profileImages');
+  export const ProfileImages = new FS.Collection('profileImages', {
+    stores: [profileImageStore],
     filter: {
       allow: {
         contentTypes: ['image/*']

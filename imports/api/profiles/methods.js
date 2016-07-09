@@ -94,4 +94,19 @@ Meteor.methods({
       });
     }
   },
+  'Profile.updateProfileImage'(imageId) {
+    check(imageId, String);
+
+    Profiles.update({
+      userId: Meteor.userId(),
+    }, {
+      $set: {
+        profilePicture: imageId,
+      },
+    }, (error) => {
+      if (error) {
+        console.log(error.reason);
+      }
+    });
+  },
 });

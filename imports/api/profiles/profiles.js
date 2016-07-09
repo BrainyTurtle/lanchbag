@@ -19,6 +19,11 @@ Profiles.schema = new SimpleSchema({
     defaultValue: [],
     optional: true,
   },
+  profilePicture: {
+    type: String,
+    defaultValue: '',
+    optional: true,
+  },
   createdAt: {
     type: Date,
     autoValue: function() {
