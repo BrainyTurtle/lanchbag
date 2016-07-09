@@ -2,14 +2,22 @@
   <div class="profile-page">
     <div class="aside">
       {{#with profileUser}}
-        <div class="user-picture"></div>
+        <div class="user-picture">
+          {{#if isCurrentUser}}
+            <div class="user-picture-overlay"><i class="icon photo"></i></div>
+          {{/if}}
+        </div>
         <div class="user-info">
           <h3>{{profile.firstName}} {{profile.lastName}}</h3>
         </div>
         <div class="profile-actions">
-          <a class="user-posts" href="">30 Posts</a>
-          <a class="user-followers" href="">28 Followers</a>
-          <a class="ui inverted green button user-follow-button"><i class="plus icon"></i> FOLLOW</a>
+          <a class="user-posts" href="">{{numPosts}} Posts</a>
+          <a class="user-followers" href="">{{numFollowers}} Followers</a>
+          {{#unless isCurrentUser}}
+            <a class="ui inverted green button user-follow-button"><i class="plus icon"></i> FOLLOW</a>
+          {{else}}
+            <a class="ui inverted blue button user-followers-button">FOLLOWERS</a>
+          {{/unless}}
         </div>
       {{/with}}
     </div>
@@ -22,5 +30,22 @@
         {{/each}}
       </div>
     </div>
+  </div>
+  {{#with profileUser}}
+    {{#if isCurrentUser}}
+      <div class="ui small modal profile-pic-modal">
+        <div class="header">Update Profile Picture</div>
+        <div class="content" style="padding: 0.5rem;">
+          {{> userProfilePictureUpload}}
+        </div>
+      </div>
+    {{/if}}
+  {{/with}}
+</template>
+
+<template name="userProfilePictureUpload">
+  <div class="user-profile-pic-upload-zone" id="dropzone">
+    <span class="upload-icon"><i class="icon plus"></i></span>
+    <input type="file" name="file" accept="image/*" class="input-file-upload">
   </div>
 </template>

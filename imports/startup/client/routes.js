@@ -49,6 +49,7 @@ Router.route('/home', {
 Router.route('/user/:profileUserId', function() {
   this.wait(Meteor.subscribe('users.one', this.params.profileUserId));
   this.wait(Meteor.subscribe('posts.fromUser', this.params.profileUserId));
+  this.wait(Meteor.subscribe('profiles.fromUser', this.params.profileUserId));
 
   if (this.ready()) {
     this.render('navbar', {to: 'header'});

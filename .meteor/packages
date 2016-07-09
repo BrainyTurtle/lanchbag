@@ -34,3 +34,4 @@ cfs:gridfs
 cfs:s3
 chrismbeckett:toastr
 session
+matb33:collection-hooks

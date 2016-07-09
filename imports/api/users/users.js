@@ -55,3 +55,13 @@ Schema.user = new SimpleSchema({
 });
 
 Meteor.users.attachSchema(Schema.user);
+
+Meteor.users.after.insert(function(userId, doc) {
+  Meteor.call('Profiles.insert', doc._id);
+});
+
+Meteor.users.helpers({
+  isCurrentUser() {
+    return this._id === Meteor.userId();
+  },
+});

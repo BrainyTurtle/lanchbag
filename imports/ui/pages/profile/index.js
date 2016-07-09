@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { Posts } from '/imports/api/posts/posts.js';
+import { Profiles } from '/imports/api/profiles/profiles.js';
 import './profilePage.html';
 import './profilePage.less';
 
@@ -38,6 +39,9 @@ Template.profilePage.onRendered(function() {
 });
 
 Template.profilePage.helpers({
+  profile() {
+    return Profiles.findOne();
+  },
   username() {
     return Template.instance().data.profileUser.profile.username;
   },
@@ -49,5 +53,24 @@ Template.profilePage.helpers({
   },
   timeFromNow(date) {
     return moment(date).fromNow();
+  },
+  numPosts() {
+    return Posts.find({userId: this._id}).count();
+  },
+  numFollowers() {
+    return Profiles.findOne().followers.length;
+  },
+});
+
+Template.profilePage.events({
+  'click .user-picture'(event, template) {
+    event.preventDefault();
+    if (this.isCurrentUser()) {
+      $('.profile-pic-modal').modal('show');
+    }
+  },
+  'click .user-follow-button'(event, template) {
+    event.preventDefault();
+    Meteor.call('Profiles.toggleFollowing', this._id);
   },
 });
