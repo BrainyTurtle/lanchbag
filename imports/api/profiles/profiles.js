@@ -1,36 +1,27 @@
-export const Posts = new Meteor.Collection('posts');
+export const Profiles = new Meteor.Collection('profiles');
 
 if (typeof Schema === 'undefined') {
   Schema = function Schema() {}
 }
 
-Posts.schema = new SimpleSchema({
+Profiles.schema = new SimpleSchema({
   userId: {
-    type: String
-  },
-  title: {
     type: String,
-    min: 1,
-    max: 30,
+    unique: true,
   },
-  content: {
-    type: String,
-    min: 1,
-    max: 10000,
-  },
-  likes: {
+  following: {
     type: [String],
     defaultValue: [],
     optional: true,
   },
-  comments: {
+  followers: {
     type: [String],
     defaultValue: [],
     optional: true,
   },
-  imageIds: {
-    type: [String],
-    defaultValue: [],
+  profilePicture: {
+    type: String,
+    defaultValue: '',
     optional: true,
   },
   createdAt: {
@@ -61,17 +52,16 @@ Posts.schema = new SimpleSchema({
   },
 });
 
-Posts.attachSchema(Posts.schema);
+Profiles.attachSchema(Profiles.schema);
 
-Posts.helpers({
-  hasCurrentUserLiked() {
-    if (this.likes) {
-      return this.likes.indexOf(Meteor.userId()) !== -1;
-    }
+Profiles.helpers({
+  isCurrentUserFollowing() {
+    return this.followers.indexOf(Meteor.userId()) !== -1;
   },
-  hasCurrentUserCommented() {
-    if (this.comments) {
-      return this.comments.indexOf(Meteor.userId()) !== -1;
-    }
+  hasFollowing(userId) {
+    return this.following.indexOf(userId) !== -1;
+  },
+  hasFollower(userId) {
+    return this.followers.indexOf(userId) !== -1;
   },
 });
