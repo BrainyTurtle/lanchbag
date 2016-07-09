@@ -10,7 +10,11 @@
       <a class="post-actions" href=""><i class="icon chevron down"></i></a>
     </div>
     <div class="post-image">
-      <div class="image-wrapper"></div>
+      {{#if Template.subscriptionsReady}}
+        {{#with image}}
+          <div class="image-wrapper" style="background-image: url({{url}});"></div>
+        {{/with}}
+      {{/if}}
     </div>
     <div class="post-content">
       <span class="post-title">{{title}}</span>

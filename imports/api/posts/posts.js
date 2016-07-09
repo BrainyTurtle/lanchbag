@@ -28,6 +28,11 @@ Posts.schema = new SimpleSchema({
     defaultValue: [],
     optional: true,
   },
+  imageIds: {
+    type: [String],
+    defaultValue: [],
+    optional: true,
+  },
   createdAt: {
     type: Date,
     autoValue: function() {
@@ -42,6 +47,7 @@ Posts.schema = new SimpleSchema({
       }
     },
     denyUpdate: true,
+    optional: true,
   },
   updatedAt: {
     type: Date,

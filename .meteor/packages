@@ -27,3 +27,10 @@ check
 momentjs:moment
 dburles:collection-helpers
 isotope:isotope
+raix:ui-dropped-event
+
+cfs:standard-packages
+cfs:gridfs
+cfs:s3
+chrismbeckett:toastr
+session
