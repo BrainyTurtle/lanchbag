@@ -2,29 +2,62 @@
   <div class="profile-page">
     <div class="aside">
       {{#with profileUser}}
-        <div class="user-picture"></div>
+        <div class="user-picture" style="background-image: {{#with profileImage}} url({{url}}); {{/with}}">
+          {{#if isCurrentUser}}
+            <div class="user-picture-overlay"><i class="icon photo"></i></div>
+          {{/if}}
+        </div>
         <div class="user-info">
           <h3>{{profile.firstName}} {{profile.lastName}}</h3>
         </div>
         <div class="profile-actions">
-          <a class="user-posts" href="">30 Posts</a>
-          <a class="user-followers" href="">28 Followers</a>
-          <a class="ui inverted green button"><i class="plus icon"></i> FOLLOW</a>
+          <a class="user-posts" href="">{{numPosts}} Posts</a>
+          <a class="user-followers" href="">{{numFollowers}} Followers</a>
+          {{#unless isCurrentUser}}
+            {{#if isFollowing}}
+              <a class="ui inverted red button user-follow-button">UNFOLLOW</a>
+            {{else}}
+              <a class="ui inverted green button user-follow-button">FOLLOW</a>
+            {{/if}}
+          {{else}}
+            <a class="ui inverted blue button user-followers-button">FOLLOWERS</a>
+          {{/unless}}
         </div>
       {{/with}}
     </div>
     <div class="wall">
       <h2>{{profileUser.profile.username}}'s Profile</h2>
-      <div class="posts">
+      <div class="posts-grid">
+        <div class="post-grid-gutter-sizer"></div>
         {{#each posts}}
-          <div class="post">
-            <h5 class="post-owner">{{username}}</h5>
-            <h3 class="post-title">{{title}}</h3>
-            <div class="post-content">{{content}}</div>
-            <h5 class="time-posted">{{timeFromNow createdAt}}</h5>
-          </div>
+          {{> post}}
         {{/each}}
       </div>
     </div>
   </div>
+  {{#with profileUser}}
+    {{#if isCurrentUser}}
+      <div class="ui small modal profile-pic-modal">
+        <div class="header">Update Profile Picture</div>
+        <div class="content" style="padding: 0.5rem;">
+          {{> userProfilePictureUpload}}
+        </div>
+      </div>
+    {{/if}}
+  {{/with}}
+</template>
+
+<template name="userProfilePictureUpload">
+  <form class="ui form profile-picture-form">
+    <div class="user-profile-pic-upload-zone" id="dropzone">
+      <div class="image-preview" style="background-image: {{#with previewImage}} url({{url}}); {{/with}}"></div>
+      <span class="upload-icon"><i class="icon plus"></i></span>
+    </div>
+    <input type="file" name="file" accept="image/*" class="input-file-upload">
+    <div class="ui buttons save-or-cancel">
+      <button class="ui button cancel-btn">Cancel</button>
+      <div class="or"></div>
+      <button class="ui positive button save-btn" type="submit">Save</button>
+    </div>
+  </form>
 </template>
