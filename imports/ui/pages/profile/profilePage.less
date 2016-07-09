@@ -1,9 +1,11 @@
 .profile-page {
+  overflow:auto;
+  position:relative;
   .aside {
-    width:250px;
-    padding-right:50px;
-    display:inline-block;
-    padding-top:40px;
+    width:230px;
+    float:left;
+    padding-top:44px;
+    overflow:auto;
     .user-picture {
       width:200px;
       height:200px;
@@ -27,19 +29,66 @@
       .user-followers {
         margin-bottom:15px;
       }
+      .user-follow-button {
+        width:200px;
+      }
     }
   }
   .wall {
-    display:inline-block;
+    float:right;
     vertical-align:top;
-    .post {
-      padding:10px;
-      border:1px solid rgba(34, 36, 38, 0.15);
-      border-radius:5px;
-      margin-bottom:30px;
-      .post-title {
-        text-align:center;
+    float:right;
+    .posts-grid {
+      .post-grid-gutter-sizer {
+        width:2%;
       }
+      .post {
+        margin-bottom:2%;
+        width:32%;
+        @media screen and (max-width:1199px) {
+          width:48%;
+        }
+        @media screen and (max-width:800px) {
+          width:100%;
+        }
+        @media screen and (max-width:665px) {
+          width:48%;
+        }
+        @media screen and (max-width:550px) {
+          width:100%;
+          border-radius:0;
+          border:none;
+          margin-bottom:8%;
+        }
+      }
+    }
+  }
+  @media screen and (min-width:666px) {
+    .aside {
+      position:fixed;
+    }
+  }
+  @media screen and (max-width:665px) {
+    .aside {
+      float:none;
+      display:block;
+      width:100%;
+      padding-top:0;
+      .user-picture {
+        float:left;
+        margin-right:50px;
+      }
+      .user-info {
+        // float:left;
+      }
+      .profile-actions {
+        // float:left;
+      }
+    }
+    .wall {
+      display:block;
+      width:100%;
+      float:none;
     }
   }
 }
