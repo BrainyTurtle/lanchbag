@@ -64,6 +64,9 @@ Posts.schema = new SimpleSchema({
 Posts.attachSchema(Posts.schema);
 
 Posts.helpers({
+  isUserTheOwner() {
+    return this.userId === Meteor.userId();
+  },
   hasCurrentUserLiked() {
     if (this.likes) {
       return this.likes.indexOf(Meteor.userId()) !== -1;

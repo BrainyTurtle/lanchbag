@@ -11,6 +11,8 @@ Template.homePage.onRendered(function() {
       columnWidth: '.post',
       gutter: '.post-grid-gutter-sizer',
     },
+  }).on( 'removeComplete', function( event, removedItems ) {
+    console.log( 'Removed ' + removedItems.length + ' items' );
   });
 });
 
