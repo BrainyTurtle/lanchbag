@@ -1,4 +1,5 @@
 import { Posts } from '/imports/api/posts/posts.js';
+import { PostImages } from '/imports/api/images/images.js';
 import './posts.js';
 
 Meteor.methods({
@@ -14,9 +15,20 @@ Meteor.methods({
   },
   'Posts.remove'(postId) {
     check(postId, String);
+    var imageIds = Posts.findOne(postId).imageIds;
     Posts.remove(postId, (error) => {
       if (error) {
         console.log(error.reason);
+      } else {
+        PostImages.remove({
+          _id: {
+            $in: imageIds,
+          },
+        }, (error) => {
+          if (error) {
+            console.log(error.reason);
+          }
+        });
       }
     });
   },

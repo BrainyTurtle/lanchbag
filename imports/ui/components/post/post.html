@@ -7,7 +7,14 @@
         <a class="post-owner" href="{{pathFor route='profilePage' data=profilePathData}}">{{postOwner}}</a>
         <span class="post-time-created">{{timeFromNow createdAt}}</span>
       </div>
-      <a class="post-actions" href=""><i class="icon chevron down"></i></a>
+      <div class="ui dropdown link post-actions">
+        <i class="icon chevron down"></i>
+        <div class="menu">
+          <a class="item delete-post-action">
+            <i class="icon trash"></i> Delete
+          </a>
+        </div>
+      </div>
     </div>
     <div class="post-image">
       {{#if Template.subscriptionsReady}}

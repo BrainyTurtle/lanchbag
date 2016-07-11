@@ -20,6 +20,13 @@ Template.post.onCreated(function() {
 
 Template.post.onRendered(function() {
   $('.post-grid').isotope('reloadItems').isotope();
+  $('.ui.dropdown').dropdown({
+    transition: 'drop',
+  });
+});
+
+Template.post.onDestroyed(function() {
+  $('.post-grid').isotope('reloadItems').isotope();
 });
 
 Template.post.helpers({
@@ -65,4 +72,14 @@ Template.post.events({
       });
     }
   },
+  'click .delete-post-action'(event, template) {
+    event.preventDefault();
+
+    $('.post-grid').isotope('remove', $(template.firstNode)).isotope();
+    Meteor.call('Posts.remove', this._id, (error) => {
+      if (error) {
+        console.log(error.reason);
+      }
+    });
+  }
 });
