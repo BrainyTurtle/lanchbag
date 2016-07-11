@@ -21,6 +21,33 @@ Template.navbar.events({
 
 /* ========= Signin modal body template ========= */
 
+Template.signin.onRendered(function() {
+  $('.ui.signin-form').form({
+    fields: {
+      email: {
+        identifier: 'email',
+        rules: [
+          {
+            type: 'email',
+            prompt: 'Please enter a valid email address',
+          },
+        ],
+      },
+      password: {
+        identifier: 'password',
+        rules: [
+          {
+            type: 'empty',
+            prompt: 'Please enter a password',
+          },
+        ],
+      },
+    },
+    inline: true,
+    on: 'blur',
+  });
+});
+
 Template.signin.events({
   //TODO (mronfim): Enable user to login with username OR email address
   'submit form.signin-form'(event, template) {
