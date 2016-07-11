@@ -96,7 +96,6 @@ Template.signup.onRendered(function() {
       },
     },
     inline: true,
-    on: 'blur',
   });
 });
 

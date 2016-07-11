@@ -25,10 +25,6 @@ Template.post.onRendered(function() {
   });
 });
 
-Template.post.onDestroyed(function() {
-  $('.post-grid').isotope('reloadItems').isotope();
-});
-
 Template.post.helpers({
   postOwner() {
     return Meteor.users.findOne(this.userId).profile.username;
