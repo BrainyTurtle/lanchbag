@@ -103,7 +103,6 @@ Template.profilePage.events({
 Template.userProfilePictureUpload.onCreated(function() {
   Tracker.autorun(function() {
     Session.set('UserProfilePictureUpload.imageId', '');
-    // Meteor.subscribe('profileImages.all');
   });
 });
 
@@ -212,6 +211,16 @@ Template.userProfilePictureUpload.events({
       } else {
         Session.set('UserProfilePictureUpload.imageId', '');
       }
+
+      template.$('.loading').fadeIn(50);
+      template.$('.image-preview img').load(function() {
+        if ($(this).width() > $(this).height()) {
+          $(this).addClass('wide');
+        } else if ($(this).width() < $(this).height()) {
+          $(this).addClass('tall');
+        }
+        template.$('.loading').fadeOut(50);
+      });
     });
   },
 });
