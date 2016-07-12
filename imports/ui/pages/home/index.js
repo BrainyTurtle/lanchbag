@@ -19,3 +19,15 @@ Template.homePage.helpers({
     return Posts.find({}, {sort: {createdAt: -1}}).fetch();
   },
 });
+
+Template.homePage.uihooks({
+  '.post': {
+    container: '.post-grid',
+    insert: function(node, next, tpl) {
+      $(node).insertBefore(next);
+    },
+    remove: function(node, next, tpl) {
+      $('.post-grid').isotope('remove', $(node)).isotope();
+    },
+  }
+});
