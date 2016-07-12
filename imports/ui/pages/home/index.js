@@ -11,8 +11,6 @@ Template.homePage.onRendered(function() {
       columnWidth: '.post',
       gutter: '.post-grid-gutter-sizer',
     },
-  }).on( 'removeComplete', function( event, removedItems ) {
-    console.log( 'Removed ' + removedItems.length + ' items' );
   });
 });
 
@@ -20,4 +18,16 @@ Template.homePage.helpers({
   posts() {
     return Posts.find({}, {sort: {createdAt: -1}}).fetch();
   },
+});
+
+Template.homePage.uihooks({
+  '.post': {
+    container: '.post-grid',
+    insert: function(node, next, tpl) {
+      $(node).insertBefore(next);
+    },
+    remove: function(node, next, tpl) {
+      $('.post-grid').isotope('remove', $(node)).isotope();
+    },
+  }
 });

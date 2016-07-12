@@ -50,8 +50,13 @@
 <template name="userProfilePictureUpload">
   <form class="ui form profile-picture-form">
     <div class="user-profile-pic-upload-zone" id="dropzone">
-      <div class="image-preview" style="background-image: {{#with previewImage}} url({{url}}); {{/with}}"></div>
       <span class="upload-icon"><i class="icon plus"></i></span>
+      <div class="image-preview">
+        <img src="{{#with previewImage}} {{url}} {{/with}}" alt="">
+      </div>
+      <div class="loading">
+        <div class="ui active centered inline loader"></div>
+      </div>
     </div>
     <input type="file" name="file" accept="image/*" class="input-file-upload">
     <div class="ui buttons save-or-cancel">

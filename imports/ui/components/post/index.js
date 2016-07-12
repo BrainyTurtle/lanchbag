@@ -6,12 +6,11 @@ import './post.html';
 import './post.less';
 
 Template.post.onCreated(function() {
-  var self = this;
   var imageId = this.data.imageIds[0];
-  Tracker.autorun(function() {
+  Tracker.autorun(() => {
     if (imageId) {
       Meteor.subscribe('images.one', imageId);
-      Meteor.subscribe('profiles.fromUser', self.data.userId);
+      Meteor.subscribe('profiles.fromUser', this.data.userId);
       //TODO (mronfim): only subscribe to images that are needed (here and on profile page).
       Meteor.subscribe('profileImages.all');
     }
@@ -71,11 +70,47 @@ Template.post.events({
   'click .delete-post-action'(event, template) {
     event.preventDefault();
 
-    $('.post-grid').isotope('remove', $(template.firstNode)).isotope();
     Meteor.call('Posts.remove', this._id, (error) => {
       if (error) {
         console.log(error.reason);
       }
     });
-  }
+  },
+  'click .post-image'(event, template) {
+    event.preventDefault();
+    let postId = template.data._id;
+    $('.post-modal#' + postId).modal('show');
+  },
+});
+
+
+// ========= Post Modal =========
+
+Template.postModal.helpers({
+  postOwner() {
+    return Meteor.users.findOne(this.userId).profile.username;
+  },
+  ownerImage() {
+    let imageId = Profiles.findOne({userId: this.userId}).profilePicture;
+    return ProfileImages.findOne(imageId);
+  },
+  timeFromNow(date) {
+    return moment(date).fromNow();
+  },
+  image() {
+    return PostImages.findOne(this.imageIds[0]);
+  },
+});
+
+// ========= Post Image =========
+
+Template.postImage.onRendered(function() {
+  Template.instance().$('img').load(function() {
+    if ($(this).width() > $(this).height()) {
+      $(this).addClass('wide');
+    } else if ($(this).width() < $(this).height()) {
+      $(this).addClass('tall');
+    }
+    $(this).siblings().fadeOut(50);
+  });
 });
