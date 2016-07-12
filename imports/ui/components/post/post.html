@@ -39,4 +39,48 @@
       <a class="post-comments" href="">{{numComments}}</a>
     </div>
   </div>
+  <div class="ui modal large post-modal" id="{{_id}}">
+    <div class="image content">
+      {{> postModal}}
+    </div>
+  </div>
+</template>
+
+<template name="postModal">
+  <div class="post-modal-body">
+    <div class="post-modal-content">
+      <div class="post-modal-image">
+        {{#with image}}
+          <img src="{{url}}" alt="">
+        {{/with}}
+      </div>
+      <div class="post-modal-info">
+        <div class="post-header">
+          <div class="owner-image" style="background-image: {{#with ownerImage}} url({{url}}) {{/with}}"></div>
+          <div class="header-title">
+            <a class="post-owner" href="{{pathFor route='profilePage' data=profilePathData}}">{{postOwner}}</a>
+            <span class="post-time-created">{{timeFromNow createdAt}}</span>
+          </div>
+          {{#if isUserTheOwner}}
+            <div class="ui dropdown link post-actions">
+              <i class="icon chevron down"></i>
+              <div class="menu">
+                <a class="item delete-post-action">
+                  <i class="icon trash"></i> Delete
+                </a>
+              </div>
+            </div>
+          {{/if}}
+        </div>
+        <div class="post-content">
+          <div class="title">
+            <h3>{{title}}</h3>
+          </div>
+          <div class="text">
+            {{content}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
