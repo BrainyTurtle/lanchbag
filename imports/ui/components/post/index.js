@@ -75,7 +75,31 @@ Template.post.events({
         console.log(error.reason);
       }
     });
-  }
+  },
+  'click .post-image'(event, template) {
+    event.preventDefault();
+    let postId = template.data._id;
+    $('.post-modal#' + postId).modal('show');
+  },
+});
+
+
+// ========= Post Modal =========
+
+Template.postModal.helpers({
+  postOwner() {
+    return Meteor.users.findOne(this.userId).profile.username;
+  },
+  ownerImage() {
+    let imageId = Profiles.findOne({userId: this.userId}).profilePicture;
+    return ProfileImages.findOne(imageId);
+  },
+  timeFromNow(date) {
+    return moment(date).fromNow();
+  },
+  image() {
+    return PostImages.findOne(this.imageIds[0]);
+  },
 });
 
 // ========= Post Image =========

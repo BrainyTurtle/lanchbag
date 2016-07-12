@@ -150,3 +150,80 @@
     }
   }
 }
+
+.post-modal {
+  .image.content {
+    padding:0 !important;
+  }
+  .post-modal-body {
+    width:100%;
+    padding-bottom:50%;
+    position:relative;
+    .post-modal-content {
+      position:absolute;
+      width:100%;
+      height:100%;
+      top:0;
+      left:0;
+      .post-modal-image {
+        width:60%;
+        height:100%;
+        background-color:#171717;
+        position:relative;
+        display:inline-block;
+        img {
+          max-width:100%;
+          object-fit: contain;
+          max-height:100%;
+          position:absolute;
+          top:50%;
+          left:50%;
+          transform:translate(-50%, -50%);
+        }
+      }
+      .post-modal-info {
+        width:40%;
+        height:100%;
+        float:right;
+        padding:20px 0;
+        padding-left:20px;
+        .post-header {
+          .owner-image {
+            width:60px;
+            height:60px;
+            display:inline-block;
+            background-repeat:no-repeat;
+            background-size:cover;
+            background-position:center;
+            border:1px solid rgba(34, 36, 38, 0.15);
+            border-radius:3px;
+            background-color:rgba(34, 36, 38, 0.15);
+          }
+          .header-title {
+            display:inline-block;
+            vertical-align:top;
+            margin-top:15px;
+            margin-left:10px;
+            .post-owner {
+              font-size:14pt;
+            }
+            .post-time-created {
+              display:block;
+              margin-top:3px;
+              font-size:9pt;
+            }
+          }
+          .post-actions {
+            float:right;
+            margin-right:15px;
+            .menu {
+              left:inherit;
+              right:-7px;
+              top:150%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

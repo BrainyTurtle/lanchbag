@@ -1,9 +1,9 @@
 
 if (Meteor.isServer) {
   var postImageStore = new FS.Store.S3('postImages', {
-    accessKeyId: Meteor.settings.AWSAccessKeyId,
-    secretAccessKey: Meteor.settings.AWSSecretAccessKey,
-    bucket: Meteor.settings.AWSBucket,
+    accessKeyId: Meteor.settings.AmazonS3.AWSAccessKeyId,
+    secretAccessKey: Meteor.settings.AmazonS3.AWSSecretAccessKey,
+    bucket: Meteor.settings.AmazonS3.AWSBucket,
     transformWrite: function(fileObj, readStream, writeStream) {
       gm(readStream, fileObj.name).autoOrient().stream().pipe(writeStream);
     }
@@ -21,9 +21,9 @@ if (Meteor.isServer) {
   });
 
   var profileImageStore = new FS.Store.S3('profileImages', {
-    accessKeyId: Meteor.settings.AWSAccessKeyId,
-    secretAccessKey: Meteor.settings.AWSSecretAccessKey,
-    bucket: Meteor.settings.AWSBucket,
+    accessKeyId: Meteor.settings.AmazonS3.AWSAccessKeyId,
+    secretAccessKey: Meteor.settings.AmazonS3.AWSSecretAccessKey,
+    bucket: Meteor.settings.AmazonS3.AWSBucket,
     transformWrite: function(fileObj, readStream, writeStream) {
       gm(readStream, fileObj.name).autoOrient().stream().pipe(writeStream);
     }
