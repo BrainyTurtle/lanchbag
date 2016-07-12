@@ -21,7 +21,7 @@
     <div class="post-image">
       {{#if Template.subscriptionsReady}}
         {{#with image}}
-          <div class="image-wrapper" style="background-image: url({{url}});"></div>
+          {{> postImage}}
         {{/with}}
       {{/if}}
     </div>
@@ -38,5 +38,12 @@
       </a>
       <a class="post-comments" href="">{{numComments}}</a>
     </div>
+  </div>
+</template>
+
+<template name="postImage">
+  <img src="{{url}}" alt="">
+  <div class="image-loading">
+    <div class="ui active inverted centered inline loader"></div>
   </div>
 </template>

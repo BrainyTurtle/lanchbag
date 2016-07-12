@@ -77,3 +77,16 @@ Template.post.events({
     });
   }
 });
+
+// ========= Post Image =========
+
+Template.postImage.onRendered(function() {
+  Template.instance().$('img').load(function() {
+    if ($(this).width() > $(this).height()) {
+      $(this).addClass('wide');
+    } else if ($(this).width() < $(this).height()) {
+      $(this).addClass('tall');
+    }
+    $(this).siblings().fadeOut(50);
+  });
+});
