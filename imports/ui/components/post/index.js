@@ -6,12 +6,11 @@ import './post.html';
 import './post.less';
 
 Template.post.onCreated(function() {
-  var self = this;
   var imageId = this.data.imageIds[0];
-  Tracker.autorun(function() {
+  Tracker.autorun(() => {
     if (imageId) {
       Meteor.subscribe('images.one', imageId);
-      Meteor.subscribe('profiles.fromUser', self.data.userId);
+      Meteor.subscribe('profiles.fromUser', this.data.userId);
       //TODO (mronfim): only subscribe to images that are needed (here and on profile page).
       Meteor.subscribe('profileImages.all');
     }
@@ -71,7 +70,6 @@ Template.post.events({
   'click .delete-post-action'(event, template) {
     event.preventDefault();
 
-    $('.post-grid').isotope('remove', $(template.firstNode)).isotope();
     Meteor.call('Posts.remove', this._id, (error) => {
       if (error) {
         console.log(error.reason);
