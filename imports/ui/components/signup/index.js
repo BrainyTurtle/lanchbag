@@ -76,15 +76,19 @@ Template.signup.onRendered(function() {
           },
         ],
       },
-      confirmPassword: {
-        identifier: 'confirmPassword',
-        rules: [
-          {
-            type: 'match[password]',
-            prompt: 'Does not match password',
-          },
-        ],
-      },
+      // confirmPassword: {
+      //   identifier: 'confirmPassword',
+      //   rules: [
+      //     {
+      //       type: 'empty',
+      //       prompt: 'Please enter a password',
+      //     },
+      //     {
+      //       type: 'match[password]',
+      //       prompt: 'Does not match password',
+      //     },
+      //   ],
+      // },
       password: {
         identifier: 'password',
         rules: [
