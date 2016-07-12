@@ -112,7 +112,7 @@ Template.signup.events({
     let username = template.$('[name=username]').val().trim();
     let email = template.$('[name=email]').val().trim();
     let password = template.$('[name=password]').val().trim();
-    let confirmPassword = template.$('[name=confirmPassword]').val().trim();
+    // let confirmPassword = template.$('[name=confirmPassword]').val().trim();
 
     Accounts.createUser({
       email: email,
